@@ -1,430 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AduanIA — How the world classifies everything it trades</title>
-  <meta name="description" content="An explainer on HTS classification: the problem, a guessing game that proves it, and an AI reasoning chain that solves it." />
-
-  <!-- Fonts: Playfair Display (serif) · IBM Plex Mono (mono) · Lato (body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Lato:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AduanIA — Every product. One number.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="landing/landing.css" />
+<link rel="stylesheet" href="landing/sections.css" />
 </head>
 <body>
 
-  <!-- ============================================================= -->
-  <!-- SECTION 0 — COLD OPEN                                          -->
-  <!-- ============================================================= -->
-  <section class="cold-open" id="cold-open">
-    <div class="cold-open__stage">
-      <div class="orbit" id="orbit" aria-hidden="true">
-        <div class="orbit__center">🥑</div>
-        <!-- Eight flag + name pairs, positioned on a ring by JS -->
-        <span class="orbit__node" data-i="0">🇺🇸 avocado</span>
-        <span class="orbit__node" data-i="1">🇨🇳 鳄梨</span>
-        <span class="orbit__node" data-i="2">🇹🇷 avokado</span>
-        <span class="orbit__node" data-i="3">🇩🇪 Avocado</span>
-        <span class="orbit__node" data-i="4">🇯🇵 アボカド</span>
-        <span class="orbit__node" data-i="5">🇧🇷 abacate</span>
-        <span class="orbit__node" data-i="6">🇫🇷 avocat</span>
-        <span class="orbit__node" data-i="7">🇮🇳 मक्खनफल</span>
-      </div>
+<!-- ============ SECTION 0 — COLD OPEN ============ -->
+<section class="cold" data-screen-label="00 — Cold Open" id="top">
+  <div class="cold-inner" id="coldInner">
 
-      <!-- Cargo ship silhouette drifting across the bottom -->
-      <div class="ship" aria-hidden="true">
-        <svg viewBox="0 0 240 70" width="240" height="70" role="img">
-          <path d="M8 44 h184 l-14 20 h-156 z" fill="currentColor"/>
-          <rect x="40" y="20" width="118" height="24" fill="currentColor"/>
-          <rect x="46" y="26" width="20" height="14" fill="#F8F6F1"/>
-          <rect x="72" y="26" width="20" height="14" fill="#F8F6F1"/>
-          <rect x="98" y="26" width="20" height="14" fill="#F8F6F1"/>
-          <rect x="124" y="26" width="20" height="14" fill="#F8F6F1"/>
-          <rect x="150" y="8" width="10" height="36" fill="currentColor"/>
+    <div class="orbit" id="orbit">
+      <div class="avocado" id="avocado">
+        <svg viewBox="0 0 120 158" fill="none" aria-label="avocado cross-section">
+          <!-- stem -->
+          <path class="avo-stem" d="M60 12 L60 3" stroke-width="2" stroke-linecap="round"/>
+          <!-- skin -->
+          <path class="avo-skin" d="M60 12 C80 12 84 36 81 58 C79 82 106 92 99 121 C94 146 79 152 60 152 C41 152 26 146 21 121 C14 92 41 82 39 58 C36 36 40 12 60 12 Z"/>
+          <!-- flesh ring -->
+          <path class="avo-flesh" d="M60 12 C80 12 84 36 81 58 C79 82 106 92 99 121 C94 146 79 152 60 152 C41 152 26 146 21 121 C14 92 41 82 39 58 C36 36 40 12 60 12 Z" transform="translate(60 92) scale(0.84) translate(-60 -92)"/>
+          <!-- pit -->
+          <circle class="avo-pit" cx="60" cy="106" r="23"/>
         </svg>
       </div>
+      <!-- flag/name chips injected by JS for orbit positioning -->
+    </div>
 
-      <h1 class="cold-open__headline">
-        How does a ship full of avocados leave Mexico, cross three oceans,
-        and arrive in Japan — and everyone along the way knows exactly
-        what's inside and how much tax is owed?
-      </h1>
+    <h1 class="cold-headline" id="coldHeadline">How does a ship full of avocados leave Mexico, cross three oceans, and arrive in Japan — and everyone along the way knows exactly what's inside and how much tax is owed?</h1>
 
-      <p class="cold-open__bridge">Because someone had a very good idea.</p>
+    <p class="cold-bridge" id="coldBridge">Because someone had a very good idea.</p>
 
-      <div class="cold-open__code">
-        <div class="bigcode" id="coldCode" aria-label="0804.40">0804.40</div>
-        <div class="section-label section-label--center">EVERY AVOCADO · EVERY COUNTRY · ONE NUMBER</div>
-      </div>
+    <div class="cold-code" id="coldCode" aria-label="0804.40">
+      <span class="d">0</span><span class="d">8</span><span class="d">0</span><span class="d">4</span><span class="d">.</span><span class="d">4</span><span class="d">0</span>
+    </div>
+    <div class="cold-code-label" id="coldCodeLabel">Every avocado · Every country · One number</div>
 
-      <div class="scroll-cue" aria-hidden="true">
-        <span>scroll</span>
-        <span class="scroll-cue__line"></span>
+  </div>
+
+  <div class="ship-track">
+    <div class="ship" id="ship">
+      <div class="hull"></div>
+      <div class="deck"></div>
+      <div class="box b1"></div>
+      <div class="box b2"></div>
+      <div class="box b3"></div>
+      <div class="box b4"></div>
+      <div class="bridge"></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" id="scrollHint">
+    <span>Scroll</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ============ SECTION 1 — THE SYSTEM ============ -->
+<section class="sec" data-screen-label="01 — The System">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label">01 — The System</span>
+      <h2 class="headline">In 1988, the World Customs Organization did something kind of insane.</h2>
+    </div>
+
+    <div class="body-text lead reveal">
+      <p>They sat down and said: let's assign a number to every single thing humans trade across borders. Every product. Every material. Every animal, vegetable, and mineral on Earth. Then let's get every country to agree to use the same numbers.</p>
+      <p>Somehow — they pulled it off. The result is the <strong>Harmonized System</strong>. Think of it as the world's biggest product catalog — organized into chapters, headings, and subheadings. Live horses. Uranium ore. Human hair wigs. Avocados. Everything numbered, categorized, internationally agreed upon.</p>
+    </div>
+
+    <!-- HTS code builder -->
+    <div class="builder" id="builder">
+      <div class="code-row">
+        <span class="code-seg u-teal" data-step="0">08</span>
+        <span class="code-seg u-teal" data-step="1">04</span>
+        <span class="code-seg u-teal" data-step="2">.40</span>
+        <span class="code-seg u-coral" data-step="3">.20</span>
+        <span class="code-seg u-gray" data-step="4">00</span>
       </div>
     </div>
-  </section>
 
-  <!-- ============================================================= -->
-  <!-- SECTION 1 — THE SYSTEM                                         -->
-  <!-- ============================================================= -->
-  <section class="band" id="system">
-    <div class="wrap">
-      <p class="section-label reveal">01 — THE SYSTEM</p>
-      <h2 class="headline reveal">In 1988, the World Customs Organization did something kind of insane.</h2>
+    <div class="builder-cap reveal">Chapter · Heading · Subheading — the first six digits are identical in every country. The last four are the United States' own.</div>
 
-      <div class="body reveal">
-        <p>They sat down and said: let's assign a number to every single thing humans trade across borders. Every product. Every material. Every animal, vegetable, and mineral on Earth. Then let's get every country to agree to use the same numbers.</p>
-        <p>Somehow — they pulled it off. The result is the Harmonized System. Think of it as the world's biggest product catalog — organized into chapters, headings, and subheadings. Live horses. Uranium ore. Human hair wigs. Avocados. Everything numbered, categorized, internationally agreed upon.</p>
-      </div>
-
-      <!-- Code builder: layers draw in as the section enters -->
-      <div class="builder reveal" id="builder">
-        <div class="builder__row" data-layer="0">
-          <span class="builder__seg seg--teal">08</span>
-        </div>
-        <div class="builder__row" data-layer="1">
-          <span class="builder__seg seg--teal">08</span>
-          <span class="builder__seg seg--teal">04</span>
-        </div>
-        <div class="builder__row" data-layer="2">
-          <span class="builder__seg seg--teal">08</span>
-          <span class="builder__seg seg--teal">04</span>
-          <span class="builder__seg seg--teal">.40</span>
-        </div>
-        <div class="builder__row" data-layer="3">
-          <span class="builder__seg seg--teal">08</span>
-          <span class="builder__seg seg--teal">04</span>
-          <span class="builder__seg seg--teal">.40</span>
-          <span class="builder__seg seg--coral">.20</span>
-        </div>
-        <div class="builder__row" data-layer="4">
-          <span class="builder__seg seg--teal">08</span>
-          <span class="builder__seg seg--teal">04</span>
-          <span class="builder__seg seg--teal">.40</span>
-          <span class="builder__seg seg--coral">.20</span>
-          <span class="builder__seg seg--gray">00</span>
-        </div>
-      </div>
-
-      <ul class="legend reveal">
-        <li><span class="legend__chip chip--teal"></span> teal — Universal · all 200 countries</li>
-        <li><span class="legend__chip chip--coral"></span> coral — US-specific additions</li>
-        <li><span class="legend__chip chip--gray"></span> gray — Statistical suffix</li>
-      </ul>
-
-      <div class="body reveal">
-        <p>Get the right number? Correct duty rate. Smooth entry. No problems. Get it wrong? Penalties. Delays. A very uncomfortable conversation with Customs.</p>
-      </div>
-
-      <p class="transition reveal">Simple enough, right? Here's where it gets interesting.</p>
+    <div class="legend reveal">
+      <span class="item"><span class="sw teal"></span> Universal — all 200 countries</span>
+      <span class="item"><span class="sw coral"></span> US-specific additions</span>
+      <span class="item"><span class="sw gray"></span> Statistical suffix</span>
     </div>
-  </section>
 
-  <!-- ============================================================= -->
-  <!-- SECTION 2 — THE PROBLEM                                        -->
-  <!-- ============================================================= -->
-  <section class="band" id="problem">
-    <div class="wrap">
-      <p class="section-label reveal">02 — THE PROBLEM</p>
-      <h2 class="headline reveal">The rulebook was written in 1988. The products weren't.</h2>
+    <div class="body-text lead reveal" style="margin-top:44px;">
+      <p>Get the right number? Correct duty rate. Smooth entry. No problems. Get it wrong? Penalties. Delays. A very uncomfortable conversation with Customs.</p>
+    </div>
 
-      <div class="body reveal">
-        <p>When the Harmonized System launched, a phone made calls. A watch told time. Glasses helped you see. Those were the rules when the categories were built.</p>
-        <p>Now think about a smartwatch. It tells time. Tracks your heart rate. Receives calls and messages. Measures blood oxygen. Runs apps. Navigates. Pays for things.</p>
-        <p>So — is it a watch? A medical device? A telephone? A computer?</p>
+    <p class="kicker reveal" style="margin-top:40px;">Simple enough, right? Here's where it gets interesting.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 — THE PROBLEM ============ -->
+<section class="sec" data-screen-label="02 — The Problem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label">02 — The Problem</span>
+      <h2 class="headline">The rulebook was written in 1988. The products weren't.</h2>
+    </div>
+
+    <div class="body-text lead reveal">
+      <p>When the Harmonized System launched, a phone made calls. A watch told time. Glasses helped you see. Those were the rules when the categories were built.</p>
+      <p>Now think about a smartwatch. It tells time. Tracks your heart rate. Receives calls and messages. Measures blood oxygen. Runs apps. Navigates. Pays for things.</p>
+    </div>
+
+    <div class="prob-grid">
+      <div class="diagram reveal">
+        <div class="ticks"><i></i></div>
+        <div class="smartwatch">
+          <div class="band-top"></div>
+          <div class="band-bot"></div>
+          <div class="case"><div class="screen"></div></div>
+          <div class="crown"></div>
+          <div class="tick">?</div>
+        </div>
       </div>
 
-      <div class="twocol reveal">
-        <div class="twocol__visual">
-          <span class="twocol__emoji">⌚</span>
-          <span class="twocol__caption">SMARTWATCH · ONE OBJECT</span>
+      <div class="heading-list">
+        <p class="kicker reveal" style="font-size:22px;margin-bottom:6px;">So — is it a watch? A medical device? A telephone? A computer?</p>
+        <div class="heading-card reveal">
+          <div><div class="hc-code">9102</div><div class="hc-title">Wrist watches, electronic</div></div>
+          <span class="hc-duty">duty rate A</span>
         </div>
-        <div class="twocol__list" id="problemList">
-          <div class="heading-row">
-            <span class="heading-row__code">9102</span>
-            <span class="heading-row__desc">Wrist watches, electronic</span>
-            <span class="heading-row__badge">5.3%</span>
+        <div class="heading-card reveal">
+          <div><div class="hc-code">8517</div><div class="hc-title">Telecom apparatus</div></div>
+          <span class="hc-duty">duty rate B</span>
+        </div>
+        <div class="heading-card reveal">
+          <div><div class="hc-code">9029</div><div class="hc-title">Measuring instruments</div></div>
+          <span class="hc-duty">duty rate C</span>
+        </div>
+        <div class="heading-card reveal">
+          <div><div class="hc-code">8471</div><div class="hc-title">Computers</div></div>
+          <span class="hc-duty">duty rate D</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="body-text lead reveal">
+      <p>Each answer leads to a different tax rate. Different trade rules. Different legal provisions. Different everything. The classification system hasn't been rewritten since 1988. Every time something new shows up at the border, someone has to figure out which old bucket it falls into — using rules that weren't written with that thing in mind.</p>
+    </div>
+
+    <p class="kicker reveal" style="margin-top:40px;">That someone is a trade attorney. And this is what their days look like.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 — THE GUESSING GAME ============ -->
+<section class="game" data-screen-label="03 — Your Turn">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;">
+      <span class="label" style="display:block;">03 — Your Turn</span>
+    </div>
+
+    <div class="product-hero reveal">
+      <div class="vr">
+        <div class="visor"></div>
+        <div class="lens l"></div>
+        <div class="lens r"></div>
+        <div class="nose"></div>
+        <div class="strap"></div>
+      </div>
+      <div class="product-name">VRSE · Virtual Reality Headset Kit</div>
+      <p class="product-desc">Plastic shell. Two optical lenses. A Bluetooth controller. Slide your smartphone in, download an app, and you're somewhere else entirely. No built-in screen. No internal electronics. Just lenses, plastic, and wireless.</p>
+    </div>
+
+    <h2 class="headline game-q reveal">Okay. What is this?</h2>
+
+    <div class="answer-grid" id="answerGrid">
+      <button class="answer-card" data-answer="95">
+        <span class="tick-tl"></span><span class="tick-br"></span>
+        <div class="ac-chapter">Chapter 95</div>
+        <div class="ac-name">Video Game Console</div>
+        <div class="ac-why">You use it to play games. Makes sense.</div>
+      </button>
+      <button class="answer-card" data-answer="85">
+        <span class="tick-tl"></span><span class="tick-br"></span>
+        <div class="ac-chapter">Chapter 85</div>
+        <div class="ac-name">Smartphone Accessory</div>
+        <div class="ac-why">It literally needs a phone to function.</div>
+      </button>
+      <button class="answer-card" data-answer="90" data-correct="true">
+        <span class="tick-tl"></span><span class="tick-br"></span>
+        <div class="draw-border"><span class="t"></span><span class="r"></span><span class="b"></span><span class="l"></span></div>
+        <div class="ac-chapter">Chapter 90</div>
+        <div class="ac-name">Goggles</div>
+        <div class="ac-why">Like ski goggles? Seriously?</div>
+        <!-- ruling prints in here when correct -->
+        <div class="ruling console" id="ruling" style="display:none;">
+          <span class="br"><i></i></span>
+          <div class="console-bar"><span class="live-dot"></span>CBP binding ruling<span class="bar-status">Verified</span></div>
+          <div class="console-body">
+            <div class="rrow"><span class="rk">Ruling</span><span class="rv">HQ H288838</span></div>
+            <div class="rrow"><span class="rk">Date</span><span class="rv">January 19, 2021</span></div>
+            <div class="rsep"></div>
+            <div class="rrow"><span class="rk">Product</span><span class="rv">VRSE Virtual Reality Headset Kit — plastic shell + Bluetooth controller; requires smartphone to operate</span></div>
+            <div class="rrow"><span class="rk">Classification</span><span class="rv"><span class="em">9004.90.00</span> — Spectacles, goggles and the like — other</span></div>
+            <div class="rrow"><span class="rk">Duty Rate</span><span class="rv">2.5%</span></div>
+            <div class="rrow"><span class="rk">Reasoning</span><span class="rv">The goggles deliver the video. The video <span class="em">is</span> the VR experience. Essential character = goggles. The controller is separately classified as 8526 — radio remote control apparatus. Bluetooth = radio frequency. Chapter 95 Note 1(m) excludes it.</span></div>
           </div>
-          <div class="heading-row">
-            <span class="heading-row__code">8517</span>
-            <span class="heading-row__desc">Telecom apparatus</span>
-            <span class="heading-row__badge">Free</span>
-          </div>
-          <div class="heading-row">
-            <span class="heading-row__code">9029</span>
-            <span class="heading-row__desc">Measuring instruments</span>
-            <span class="heading-row__badge">1.7%</span>
-          </div>
-          <div class="heading-row">
-            <span class="heading-row__code">8471</span>
-            <span class="heading-row__desc">Computers</span>
-            <span class="heading-row__badge">Free</span>
-          </div>
-          <p class="twocol__note">Duty rates illustrative.</p>
         </div>
-      </div>
-
-      <div class="body reveal">
-        <p>Each answer leads to a different tax rate. Different trade rules. Different legal provisions. Different everything. The classification system hasn't been rewritten since 1988. Every time something new shows up at the border, someone has to figure out which old bucket it falls into — using rules that weren't written with that thing in mind.</p>
-      </div>
-
-      <p class="transition reveal">That someone is a trade attorney. And this is what their days look like.</p>
+      </button>
+      <button class="answer-card" data-answer="84">
+        <span class="tick-tl"></span><span class="tick-br"></span>
+        <div class="ac-chapter">Chapter 84</div>
+        <div class="ac-name">Computer Peripheral</div>
+        <div class="ac-why">It runs software and processes data.</div>
+      </button>
     </div>
-  </section>
 
-  <!-- ============================================================= -->
-  <!-- SECTION 3 — THE GUESSING GAME                                  -->
-  <!-- ============================================================= -->
-  <section class="game" id="game">
-    <div class="wrap">
-      <p class="section-label reveal">03 — YOUR TURN</p>
+    <p class="game-hint" id="gameHint"></p>
 
-      <div class="product-hero reveal">
-        <span class="product-hero__emoji">🥽</span>
-        <p class="product-hero__name">VRSE · VIRTUAL REALITY HEADSET KIT</p>
-        <p class="product-hero__desc">
-          Plastic shell. Two optical lenses. A Bluetooth controller.
-          Slide your smartphone in, download an app, and you're somewhere
-          else entirely. No built-in screen. No internal electronics.
-          Just lenses, plastic, and wireless.
-        </p>
+    <!-- reveal block, hidden until correct -->
+    <div class="reveal-block" id="revealBlock" style="display:none;">
+      <div class="verdict">Goggles. 9004.90.00.</div>
+      <div class="body-text lead">
+        <p>Not a game console. Not a phone accessory. Goggles — same legal category as safety glasses and ski goggles. 2.5% duty. And once you see the logic, it's completely defensible: the lenses are what make it a VR experience. Remove them and you just have a phone with an app.</p>
+        <p>The kit gets pulled apart on paper — optical equipment here, radio apparatus there. Together they make a VR gaming system. On paper they're two separate things in two separate chapters.</p>
+        <p>A reasonable person would never land here without knowing the rules. <strong>This is a Tuesday afternoon case.</strong></p>
       </div>
 
-      <h2 class="headline headline--center reveal">Okay. What is this?</h2>
-
-      <div class="game__grid" id="gameGrid">
-        <button class="card" data-correct="false" data-key="95">
-          <span class="card__chapter">CHAPTER 95</span>
-          <span class="card__title">Video Game Console</span>
-          <span class="card__rationale">You use it to play games. Makes sense.</span>
-        </button>
-        <button class="card" data-correct="false" data-key="85">
-          <span class="card__chapter">CHAPTER 85</span>
-          <span class="card__title">Smartphone Accessory</span>
-          <span class="card__rationale">It literally needs a phone to function.</span>
-        </button>
-        <button class="card" data-correct="true" data-key="90">
-          <span class="card__chapter">CHAPTER 90</span>
-          <span class="card__title">Goggles</span>
-          <span class="card__rationale">Like ski goggles? Seriously?</span>
-        </button>
-        <button class="card" data-correct="false" data-key="84">
-          <span class="card__chapter">CHAPTER 84</span>
-          <span class="card__title">Computer Peripheral</span>
-          <span class="card__rationale">It runs software and processes data.</span>
-        </button>
-      </div>
-
-      <p class="game__hint" id="gameHint" aria-live="polite"></p>
-
-      <!-- Ruling reveal (hidden until correct answer) -->
-      <div class="ruling" id="ruling" hidden>
-        <pre class="ruling__block" id="rulingBlock"></pre>
-
-        <div class="reveal-copy" id="revealCopy">
-          <p class="verdict">Goggles. 9004.90.00.</p>
-          <div class="body">
-            <p>Not a game console. Not a phone accessory. Goggles — same legal category as safety glasses and ski goggles. 2.5% duty. And once you see the logic, it's completely defensible: the lenses are what make it a VR experience. Remove them and you just have a phone with an app.</p>
-            <p>The kit gets pulled apart on paper — optical equipment here, radio apparatus there. Together they make a VR gaming system. On paper they're two separate things in two separate chapters.</p>
-            <p>A reasonable person would never land here without knowing the rules. This is a Tuesday afternoon case.</p>
-          </div>
-
-          <aside class="sony" id="sony">
-            <p class="sony__label">ONE MORE — JUST TO SHOW THIS ISN'T UNUSUAL</p>
-            <p class="sony__body">
-              The Sony SmartEyeglass SED-E1 — AR glasses with a display, camera,
-              accelerometer, gyroscope, and GPS. CBP went through every possible
-              heading. Eyewear? No. Telecom? No. Computer? No single component
-              clearly dominates.
-            </p>
-            <p class="sony__body">
-              When nothing fits and essential character can't be determined, the
-              rules say: go with whichever heading comes last in numerical order.
-            </p>
-            <div class="sony__data">
-              <div><span>RULING</span><b>N260535</b></div>
-              <div><span>PRODUCT</span><b>Sony SmartEyeglass SED-E1</b></div>
-              <div><span>RESULT</span><b>9031.80 — Measuring instruments NES</b></div>
-            </div>
-            <p class="sony__kicker">A pair of glasses. Classified as a scientific instrument.<br>Completely defensible. Completely surprising.</p>
-          </aside>
+      <div class="sony-card">
+        <div class="sc-label">One more — just to show this isn't unusual</div>
+        <p>The Sony SmartEyeglass SED-E1 — AR glasses with a display, camera, accelerometer, gyroscope, and GPS. CBP went through every possible heading. Eyewear? No. Telecom? No. Computer? No single component clearly dominates.</p>
+        <p>When nothing fits and essential character can't be determined, the rules say: go with whichever heading comes last in numerical order.</p>
+        <div class="sc-spec">
+          <span class="k">Ruling</span><span class="v">N260535</span>
+          <span class="k">Product</span><span class="v">Sony SmartEyeglass SED-E1</span>
+          <span class="k">Result</span><span class="v"><span class="em">9031.80</span> — Measuring instruments NES</span>
         </div>
+        <p class="sc-kicker">A pair of glasses. Classified as a scientific instrument. Completely defensible. Completely surprising.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============================================================= -->
-  <!-- SECTION 4 — THE RESEARCH PROCESS (sticky scroll)               -->
-  <!-- ============================================================= -->
-  <section class="research" id="research">
-    <div class="research__intro wrap">
-      <p class="section-label reveal">04 — THE RESEARCH</p>
-      <h2 class="headline reveal">So how do you actually figure this out?</h2>
-      <div class="body reveal">
-        <p>You don't guess. There's a specific set of steps. You follow them in order. Every time. No shortcuts. Here's what a real classification opinion looks like from the inside.</p>
+<!-- ============ SECTION 4 — THE RESEARCH ============ -->
+<section class="sec research-sticky" data-screen-label="04 — The Research">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label">04 — The Research</span>
+      <h2 class="headline">So how do you actually figure this out?</h2>
+    </div>
+
+    <div class="body-text lead reveal">
+      <p>You don't guess. There's a specific set of steps. You follow them in order. Every time. No shortcuts. Here's what a real classification opinion looks like from the inside.</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="spine"></div>
+      <div class="spine-fill" id="spineFill"></div>
+
+      <div class="step">
+        <div class="dot">01</div>
+        <div class="st-label">Read the Section Notes</div>
+        <div class="st-body">Before looking at any specific code, you check whether your product is even allowed in this section of the schedule. Some things are explicitly excluded before you start. <span class="em">The VR controller got knocked out here — radio devices are excluded from Chapter 95 by Section Note.</span></div>
+      </div>
+      <div class="step">
+        <div class="dot">02</div>
+        <div class="st-label">Read the Chapter Notes</div>
+        <div class="st-body">One level deeper. Every chapter has its own rules about what's in and what's out. <span class="em">One sentence can change the entire classification.</span></div>
+      </div>
+      <div class="step">
+        <div class="dot">03</div>
+        <div class="st-label">Apply the GRI Rules</div>
+        <div class="st-body">Six rules. Applied in order. Always. Rule 1: does the heading text describe this thing specifically? If the product fits multiple headings equally — that's where Rule 3 comes in, and things get genuinely complicated.</div>
+      </div>
+      <div class="step">
+        <div class="dot">04</div>
+        <div class="st-label">Consult the Explanatory Notes</div>
+        <div class="st-body">2,400 pages of official guidance explaining what every heading actually means in practice. Not legally binding. But CBP follows them, so you'd better read them.</div>
+      </div>
+      <div class="step">
+        <div class="dot">05</div>
+        <div class="st-label">Search the Ruling Database</div>
+        <div class="st-body">CBP publishes every classification decision it has ever made. Thousands of rulings. You search for similar products, read what CBP decided, and figure out whether those decisions help or hurt your case. Recent rulings outrank old ones. Sometimes they contradict each other.</div>
+      </div>
+      <div class="step">
+        <div class="dot">06</div>
+        <div class="st-label">Build the Legal Argument</div>
+        <div class="st-body">Now you have everything. You write the opinion: here's the product, here are the rules, here's the precedent, here's the code, here's why it holds up. If it's genuinely ambiguous — you say so. Options with honest confidence ratings. <span class="em">Never a guess dressed up as certainty.</span></div>
       </div>
     </div>
 
-    <!-- Sticky stage: timeline draws as you scroll -->
-    <div class="research__sticky" id="researchSticky">
-      <div class="research__inner wrap">
-        <div class="timeline">
-          <div class="timeline__line"><span class="timeline__progress" id="timelineProgress"></span></div>
-          <ol class="timeline__steps" id="timelineSteps">
-            <li class="step" data-step="0">
-              <span class="step__dot"></span>
-              <div class="step__content">
-                <p class="step__title">STEP 01 — Read the Section Notes</p>
-                <p class="step__body">Before looking at any specific code, you check whether your product is even allowed in this section of the schedule. Some things are explicitly excluded before you start. The VR controller got knocked out here — radio devices are excluded from Chapter 95 by Section Note.</p>
-              </div>
-            </li>
-            <li class="step" data-step="1">
-              <span class="step__dot"></span>
-              <div class="step__content">
-                <p class="step__title">STEP 02 — Read the Chapter Notes</p>
-                <p class="step__body">One level deeper. Every chapter has its own rules about what's in and what's out. One sentence can change the entire classification.</p>
-              </div>
-            </li>
-            <li class="step" data-step="2">
-              <span class="step__dot"></span>
-              <div class="step__content">
-                <p class="step__title">STEP 03 — Apply the GRI Rules</p>
-                <p class="step__body">Six rules. Applied in order. Always. Rule 1: does the heading text describe this thing specifically? If the product fits multiple headings equally — that's where Rule 3 comes in, and things get genuinely complicated.</p>
-              </div>
-            </li>
-            <li class="step" data-step="3">
-              <span class="step__dot"></span>
-              <div class="step__content">
-                <p class="step__title">STEP 04 — Consult the Explanatory Notes</p>
-                <p class="step__body">2,400 pages of official guidance explaining what every heading actually means in practice. Not legally binding. But CBP follows them, so you'd better read them.</p>
-              </div>
-            </li>
-            <li class="step" data-step="4">
-              <span class="step__dot"></span>
-              <div class="step__content">
-                <p class="step__title">STEP 05 — Search the Ruling Database</p>
-                <p class="step__body">CBP publishes every classification decision it has ever made. Thousands of rulings. You search for similar products, read what CBP decided, and figure out whether those decisions help or hurt your case. Recent rulings outrank old ones. Sometimes they contradict each other.</p>
-              </div>
-            </li>
-            <li class="step" data-step="5">
-              <span class="step__dot"></span>
-              <div class="step__content">
-                <p class="step__title">STEP 06 — Build the Legal Argument</p>
-                <p class="step__body">Now you have everything. You write the opinion: here's the product, here are the rules, here's the precedent, here's the code, here's why it holds up. If it's genuinely ambiguous — you say so. Options with honest confidence ratings. Never a guess dressed up as certainty.</p>
-              </div>
-            </li>
-          </ol>
+    <!-- metric callout -->
+    <div class="metrics reveal" id="metrics">
+      <div class="metric">
+        <div class="m-num" data-count="5000" data-prefix="$" data-suffix="" data-pre="$2,000 – ">$5,000</div>
+        <div class="m-sub">Attorney opinion</div>
+        <div class="m-sub2">Days of work</div>
+      </div>
+      <div class="vs">vs</div>
+      <div class="metric">
+        <div class="m-num teal" data-count="15" data-prefix="~$">~$15</div>
+        <div class="m-sub">AduanIA</div>
+        <div class="m-sub2">Minutes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 — THE SOLUTION ============ -->
+<section class="sec" data-screen-label="05 — The Solution">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label">05 — The Solution</span>
+      <h2 class="headline">We built a system that runs the whole chain automatically.</h2>
+    </div>
+
+    <div class="body-text lead reveal">
+      <p>Eight specialized AI agents. Each one handles a different step — reading the notes, applying the rules, searching the rulings, weighing the evidence, drafting the conclusion. The same process a senior attorney runs. Every source cited. Every ruling referenced. Uncertainty flagged honestly when it exists.</p>
+      <p>Not a lookup. Not a chatbot guessing from a description. <strong>A legal reasoning chain — automated.</strong></p>
+    </div>
+
+    <div class="solution-console console reveal" id="solutionConsole">
+      <span class="br"><i></i></span>
+      <div class="console-bar"><span class="live-dot"></span>Sequence analysis · True wireless earbuds<span class="bar-status" id="consoleStatus">Running</span></div>
+      <div class="console-body">
+        <div class="pipeline" id="pipeline">
+          <div class="pipe-row" data-result=""><span class="pdot"></span><span class="pstep">Product described + photos uploaded</span><span class="presult"></span></div>
+          <div class="pipe-row" data-result="classification sheet"><span class="pdot"></span><span class="pstep">Interviewer agent builds classification sheet</span><span class="presult">→ classification sheet</span></div>
+          <div class="pipe-row" data-result="4 candidates"><span class="pdot"></span><span class="pstep">HTS researcher identifies initial candidates</span><span class="presult">→ 4 candidates</span></div>
+          <div class="pipe-row" data-result="1 excluded"><span class="pdot"></span><span class="pstep">Section &amp; Chapter Notes applied</span><span class="presult">→ 1 excluded</span></div>
+          <div class="pipe-row" data-result="narrowed to 2"><span class="pdot"></span><span class="pstep">GRI Rules 1–6 in sequence</span><span class="presult">→ narrowed to 2</span></div>
+          <div class="pipe-row" data-result="Ch. 84, 85"><span class="pdot"></span><span class="pstep">Explanatory Notes consulted</span><span class="presult">→ Ch. 84, 85</span></div>
+          <div class="pipe-row" data-result="3 matched"><span class="pdot"></span><span class="pstep">CBP rulings searched &amp; weighed</span><span class="presult">→ 3 matched</span></div>
+          <div class="pipe-row" data-result="complete"><span class="pdot"></span><span class="pstep">Evidence assembled · conclusion drafted</span><span class="presult">→ complete</span></div>
+        </div>
+
+        <div class="conf" id="conf">
+          <div class="conf-head"><span>Confidence</span><span class="conf-pct" id="confPct">0%</span></div>
+          <div class="conf-bar"><i id="confFill"></i></div>
+        </div>
+
+        <div class="final-row">
+          <div class="final-code" id="finalCode">9004.90.00</div>
+          <div class="final-meta">confidence <span class="em">HIGH</span> · supporting rulings: <span class="em">3</span> · contradicting: <span class="em">0</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Metric callout -->
-    <div class="metric wrap" id="metric">
-      <div class="metric__col">
-        <div class="metric__big"><span class="count" data-from="0" data-to="5000" data-prefix="$2,000 – $">5,000</span></div>
-        <div class="metric__label">Attorney opinion</div>
-        <div class="metric__sub">Days of work</div>
-      </div>
-      <div class="metric__vs">vs</div>
-      <div class="metric__col">
-        <div class="metric__big metric__big--teal"><span class="count" data-from="0" data-to="15" data-prefix="~$">15</span></div>
-        <div class="metric__label">AduanIA</div>
-        <div class="metric__sub">Minutes</div>
-      </div>
+    <div class="cta-row reveal">
+      <a class="btn btn-teal" href="#top">See how it works →</a>
+      <a class="btn btn-coral" href="ADUANIA.html">View a sample memo →</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============================================================= -->
-  <!-- SECTION 5 — THE SOLUTION                                       -->
-  <!-- ============================================================= -->
-  <section class="band" id="solution">
-    <div class="wrap">
-      <p class="section-label reveal">05 — THE SOLUTION</p>
-      <h2 class="headline reveal">We built a system that runs the whole chain automatically.</h2>
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wm">AduanIA</div>
+  <div class="wm-sub">CBP Classification Engine</div>
+  <hr class="rule" style="max-width:120px;margin:30px auto 0;" />
+  <div class="disc">For informational purposes only · This analysis does not constitute legal advice · © 2026 AduanIA</div>
+</footer>
 
-      <div class="body reveal">
-        <p>Eight specialized AI agents. Each one handles a different step — reading the notes, applying the rules, searching the rulings, weighing the evidence, drafting the conclusion. The same process a senior attorney runs. Every source cited. Every ruling referenced. Uncertainty flagged honestly when it exists.</p>
-        <p>Not a lookup. Not a chatbot guessing from a description. A legal reasoning chain — automated.</p>
-      </div>
-
-      <div class="pipeline" id="pipeline">
-        <div class="pipe-row" data-result="">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">Product described + photos uploaded</span>
-          <span class="pipe-row__result"></span>
-        </div>
-        <div class="pipe-row" data-result="">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">Interviewer agent builds classification sheet</span>
-          <span class="pipe-row__result"></span>
-        </div>
-        <div class="pipe-row" data-result="4 candidates">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">HTS researcher identifies initial candidates</span>
-          <span class="pipe-row__result"></span>
-        </div>
-        <div class="pipe-row" data-result="1 excluded">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">Section &amp; Chapter Notes applied</span>
-          <span class="pipe-row__result"></span>
-        </div>
-        <div class="pipe-row" data-result="Narrowed to 2">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">GRI Rules 1–6 in sequence</span>
-          <span class="pipe-row__result"></span>
-        </div>
-        <div class="pipe-row" data-result="Ch. 84, 85">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">Explanatory Notes consulted</span>
-          <span class="pipe-row__result"></span>
-        </div>
-        <div class="pipe-row" data-result="3 matched">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">CBP rulings searched &amp; weighed</span>
-          <span class="pipe-row__result"></span>
-        </div>
-        <div class="pipe-row" data-result="Complete">
-          <span class="pipe-row__dot"></span>
-          <span class="pipe-row__label">Evidence assembled · conclusion drafted</span>
-          <span class="pipe-row__result"></span>
-        </div>
-      </div>
-
-      <div class="confidence" id="confidence">
-        <div class="confidence__bar"><span class="confidence__fill" id="confidenceFill"></span></div>
-        <div class="confidence__pct"><span class="count" data-from="0" data-to="92" data-suffix="%" data-manual>0%</span></div>
-      </div>
-
-      <div class="final-code" id="finalCode">
-        9004.90.00 — confidence HIGH · supporting rulings: 3 · contradicting: 0
-      </div>
-
-      <div class="cta reveal">
-        <a href="#" class="btn btn--teal">See how it works →</a>
-        <a href="#" class="btn btn--coral">View a sample memo →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================= -->
-  <!-- FOOTER                                                         -->
-  <!-- ============================================================= -->
-  <footer class="footer">
-    <div class="wrap">
-      <p class="footer__mark">AduanIA</p>
-      <p class="footer__sub">CBP CLASSIFICATION ENGINE</p>
-      <p class="footer__disclaimer">
-        FOR INFORMATIONAL PURPOSES ONLY · THIS ANALYSIS DOES NOT
-        CONSTITUTE LEGAL ADVICE · © 2026 ADUANIA
-      </p>
-    </div>
-  </footer>
-
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="landing/landing.js"></script>
 </body>
 </html>

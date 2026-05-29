@@ -1,0 +1,292 @@
+/* ============================================================
+   AduanIA — Explainer Page
+   "Warm architectural white. Scientific instrument."
+   Swiss technical journal × Italian notary office.
+
+   Shares the app's two-voice law:
+     serif (Newsreader) = authority, judgment, prose, the headline & the answer
+     mono  (JetBrains Mono) = the machine: codes, rulings, labels, output
+
+   ACCENTS ARE SEMANTIC, NEVER DECORATIVE (muted/tactical, never poppy):
+     teal = confirmed & verified   rust = attention / US-specific
+     acid-lime lives only inside the dark instrument windows = the live tool
+   ============================================================ */
+
+:root {
+  --base:        #F8F6F1;   /* warm architectural white — never pure white */
+  --base-panel:  #FFFFFF;   /* the contrast white for the game section */
+  --base-strip:  #F0EDE5;   /* light gray product strip */
+  --ink:         #1A1A18;   /* near-black */
+  --ink-light:   #5A5A52;   /* muted warm gray, secondary text */
+  --ink-faint:   #8C887C;   /* tertiary / captions */
+  --rule:        #D8D4C8;   /* warm gray dividers & borders */
+  --rule-soft:   #E6E2D8;
+
+  --teal:  #1d7d70;   /* confirmed / complete / cited — muted, tactical */
+  --teal-soft: rgba(29,125,112,0.08);
+  --coral: #c0593c;   /* attention / US-specific — app rust, muted brick */
+  --coral-soft: rgba(192,89,60,0.07);
+  --green: #6c7e2b;   /* olive (light-bg echo of the tool's lime) */
+
+  /* the dark instrument window (lifted straight from the app) */
+  --c-bg:    #161b13;
+  --c-panel: #1e2519;
+  --c-fg:    #edf0e4;
+  --c-soft:  #d2d7c5;
+  --c-muted: #a4ab90;
+  --c-faint: #7b8169;
+  --c-lime:  #d9f37a;
+  --c-cyan:  #8fd4d8;
+  --c-rust:  #c9624a;
+  --c-clay:  #e0995f;
+  --c-line:  rgba(233,237,224,0.13);
+
+  --serif: "Newsreader", Georgia, serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --body:  "Newsreader", Georgia, serif;
+
+  --maxw: 860px;
+  --pad: 40px;
+
+  --ease-out: cubic-bezier(0.16, 0.84, 0.30, 1);
+  --ease-in:  cubic-bezier(0.55, 0.0, 0.78, 0.30);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--base);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--teal); color: var(--base); }
+
+/* ---------------- Typographic primitives ---------------- */
+
+.serif { font-family: var(--serif); font-weight: 400; }
+.mono  { font-family: var(--mono); }
+.it    { font-style: italic; }
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;          /* size carries the weight, never bold */
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.headline {        /* section headlines */
+  font-size: clamp(30px, 4.4vw, 46px);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+}
+
+.kicker {          /* serif italic transition / emphasis lines */
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.8vw, 30px);
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.label {           /* section labels & technical caps */
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.label-ink   { color: var(--ink-faint); }
+.label-coral { color: var(--coral); }
+
+.body-text { max-width: 62ch; }
+.body-text p { margin: 0 0 1.5em; }
+.body-text p:last-child { margin-bottom: 0; }
+.body-text strong { font-weight: 400; color: var(--ink); }
+
+.lead {
+  font-size: clamp(19px, 2vw, 23px);
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+/* ---------------- Layout scaffolding ---------------- */
+
+section { position: relative; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+.wrap-wide { max-width: 1180px; }
+
+.sec {
+  padding-top: clamp(72px, 10vw, 110px);
+  padding-bottom: clamp(72px, 10vw, 110px);
+  border-top: 0.5px solid var(--rule);
+}
+
+.sec-head { margin-bottom: 38px; }
+.sec-head .label { display: block; margin-bottom: 22px; }
+
+/* thin divider rule */
+.rule { height: 0.5px; background: var(--rule); border: 0; margin: 0; }
+
+/* ---------------- Reveal animation base ---------------- */
+/* GSAP toggles .is-in; we provide a CSS fallback for reduced motion */
+.reveal { opacity: 0; transform: translateY(12px); }
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------------- Technical-instrument diagram frame ---------------- */
+/* products are drawn as thin-line instrument diagrams with corner ticks */
+
+.diagram {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.diagram .ticks::before,
+.diagram .ticks::after,
+.diagram .ticks > i::before,
+.diagram .ticks > i::after {
+  content: "";
+  position: absolute;
+  width: 12px; height: 12px;
+  border: 1px solid var(--ink-faint);
+  border-width: 0;
+}
+.diagram .ticks::before { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.diagram .ticks::after  { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.diagram .ticks > i::before { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.diagram .ticks > i::after  { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+.diagram .ticks { position: absolute; inset: 0; pointer-events: none; }
+
+.diagram-cap {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 18px;
+  text-align: center;
+}
+
+/* stroke helper — all illustrations share one ink line weight */
+.stroke { border: 1.5px solid var(--ink); background: transparent; }
+
+/* ---------------- HTS code token (Section 2 cards / candidates) ---------------- */
+
+.code-num {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+/* ---------------- Buttons ---------------- */
+
+.btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.btn:hover { background: var(--ink); color: var(--base); }
+.btn-teal { border-color: var(--teal); color: var(--teal); }
+.btn-teal:hover { background: var(--teal); color: var(--base); }
+.btn-coral { border-color: var(--coral); color: var(--coral); }
+.btn-coral:hover { background: var(--coral); color: var(--base); }
+
+/* ---------------- Dark instrument window (a view into the real tool) ---------------- */
+/* lifted from the app's "living statute" console: charcoal-green canvas,
+   corner-bracket frame, faint blueprint grid, acid-lime as the live signal. */
+.console {
+  position: relative;
+  background: var(--c-bg);
+  color: var(--c-fg);
+  border: 1px solid var(--c-line);
+  font-family: var(--mono);
+  overflow: hidden;
+}
+.console::after {           /* faint blueprint grid */
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(233,237,224,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233,237,224,0.05) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 35%, transparent 100%);
+}
+/* corner-bracket frame */
+.console > .br { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.console > .br::before, .console > .br::after,
+.console > .br > i::before, .console > .br > i::after {
+  content: ""; position: absolute; width: 11px; height: 11px;
+  border-color: var(--c-lime); border-style: solid; border-width: 0; opacity: 0.85;
+}
+.console > .br::before { top: 7px; left: 7px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.console > .br::after  { top: 7px; right: 7px; border-top-width: 1.5px; border-right-width: 1.5px; }
+.console > .br > i::before { bottom: 7px; left: 7px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.console > .br > i::after  { bottom: 7px; right: 7px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+.console-bar {
+  position: relative; z-index: 3;
+  display: flex; align-items: center; gap: 11px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--c-line);
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--c-muted);
+}
+.console-bar .live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--c-lime); flex: none;
+  box-shadow: 0 0 0 0 rgba(217,243,122,0.6); animation: cPulse 1.9s infinite;
+}
+.console-bar .bar-status { margin-left: auto; color: var(--c-lime); }
+.console-body { position: relative; z-index: 3; padding: 26px 26px 30px; }
+@keyframes cPulse {
+  0% { box-shadow: 0 0 0 0 rgba(217,243,122,0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(217,243,122,0); }
+  100% { box-shadow: 0 0 0 0 rgba(217,243,122,0); }
+}
+
+/* ---------------- Footer ---------------- */
+.footer {
+  border-top: 0.5px solid var(--rule);
+  padding: 56px var(--pad) 64px;
+  text-align: center;
+}
+.footer .wm { font-family: var(--serif); font-style: italic; font-size: 34px; color: var(--ink); }
+.footer .wm-sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-faint); margin-top: 10px; }
+.footer .disc { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--ink-faint); line-height: 2; margin-top: 34px; text-transform: uppercase; }
