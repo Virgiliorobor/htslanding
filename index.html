@@ -18,10 +18,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Fonts for the optional 90s-anime theme. The CSS is tiny; the woff2 files
+     only download when that theme actually renders glyphs with them. -->
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700;900&family=DotGothic16&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="landing/landing.css" />
 <link rel="stylesheet" href="landing/sections.css" />
+<link rel="stylesheet" href="landing/theme-anime90s.css" />
+<!-- Set the theme before first paint (URL ?theme=anime or saved choice) to avoid a flash. -->
+<script>
+(function () {
+  try {
+    var q = new URLSearchParams(location.search).get("theme");
+    var saved = localStorage.getItem("aduania-theme");
+    var t = q || saved;
+    if (t === "anime" || t === "anime90s") {
+      document.documentElement.setAttribute("data-theme", "anime90s");
+    }
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
+
+<!-- Theme switch — flips between the editorial default and the 90s-anime look -->
+<button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch visual theme">
+  <span class="tt-star">✶</span><span class="tt-label">90s Anime</span>
+</button>
 
 <!-- ============ SECTION 0 — COLD OPEN ============ -->
 <section class="cold" data-screen-label="00 — Cold Open" id="top">
@@ -378,5 +400,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="landing/landing.js"></script>
+<!-- Theme toggle wiring (kept separate from the GSAP code so it can't break it) -->
+<script>
+(function () {
+  var btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  var root = document.documentElement;
+  function sync() {
+    var on = root.getAttribute("data-theme") === "anime90s";
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    var lbl = btn.querySelector(".tt-label");
+    if (lbl) lbl.textContent = on ? "Editorial" : "90s Anime";
+  }
+  btn.addEventListener("click", function () {
+    var on = root.getAttribute("data-theme") === "anime90s";
+    if (on) {
+      root.removeAttribute("data-theme");
+      try { localStorage.setItem("aduania-theme", "editorial"); } catch (e) {}
+    } else {
+      root.setAttribute("data-theme", "anime90s");
+      try { localStorage.setItem("aduania-theme", "anime"); } catch (e) {}
+    }
+    sync();
+  });
+  sync();
+})();
+</script>
 </body>
 </html>

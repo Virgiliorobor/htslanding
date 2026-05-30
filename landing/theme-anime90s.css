@@ -1,0 +1,223 @@
+/* ============================================================
+   AduanIA — "90s ANIME" theme  (vintage Japanese cartoon / cel)
+   ------------------------------------------------------------
+   Activated by <html data-theme="anime90s">. PURELY ADDITIVE:
+   it only re-declares design tokens and adds decoration scoped
+   under the attribute. Remove the attribute (or this file) and
+   the editorial design returns 100% unchanged.
+
+   Signature: sunset-cream paper, deep-plum ink, saturated cel
+   accents, hard outlines + offset drop-shadows (no blur),
+   halftone dots, CRT scanlines, dramatic sunburst behind the
+   hero. Pop/rounded display type, pixel "digital" mono.
+   ============================================================ */
+
+html[data-theme="anime90s"] {
+  /* --- palette ------------------------------------------------ */
+  --base:        #FCEEDB;   /* warm sunset paper */
+  --base-panel:  #FFF8EE;   /* card / panel cream */
+  --base-strip:  #FBE0C2;   /* peach strip */
+  --ink:         #2A1B3D;   /* deep plum-black (cel outline) */
+  --ink-light:   #6E5A8C;   /* muted violet */
+  --ink-faint:   #A38FC0;   /* pale violet */
+  --rule:        #2A1B3D;   /* outlines are bold & dark, not hairline */
+  --rule-soft:   #C9A6D6;
+
+  --teal:  #0FB5C9;         /* retro cyan ("confirmed") */
+  --teal-soft: rgba(15,181,201,0.14);
+  --coral: #FF3D7F;         /* hot anime magenta ("attention") */
+  --coral-soft: rgba(255,61,127,0.12);
+  --green: #E8A23D;         /* sunset amber */
+
+  /* CRT instrument window — deep night + neon signal */
+  --c-bg:    #190F33;
+  --c-panel: #241646;
+  --c-fg:    #F3E9FF;
+  --c-soft:  #DBCBF2;
+  --c-muted: #9E89C4;
+  --c-faint: #7A66A0;
+  --c-lime:  #5DF2E4;       /* neon mint = the live signal */
+  --c-cyan:  #FF7BD5;       /* neon pink */
+  --c-rust:  #FF6B5E;
+  --c-clay:  #FFB05E;
+  --c-line:  rgba(243,233,255,0.18);
+
+  /* --- type --------------------------------------------------- */
+  --serif: "Mochiy Pop One", "Zen Maru Gothic", system-ui, sans-serif;  /* display / authority */
+  --mono:  "DotGothic16", ui-monospace, monospace;                      /* the "machine" / digital */
+  --body:  "Zen Maru Gothic", system-ui, sans-serif;                    /* prose */
+}
+
+/* sunset wash + global halftone, painted on the page background so it
+   sits behind every section and never touches text legibility */
+html[data-theme="anime90s"] body {
+  background-color: #FCEEDB;
+  background-image:
+    radial-gradient(rgba(42,27,61,0.11) 1px, transparent 1.6px),                 /* halftone */
+    radial-gradient(circle at 16% 6%, rgba(255,61,127,0.16), transparent 40%),   /* pink sun glow */
+    radial-gradient(circle at 88% 2%, rgba(15,181,201,0.18), transparent 44%),   /* cyan glow */
+    linear-gradient(180deg, #FCEEDB 0%, #FBE0C2 100%);
+  background-size: 7px 7px, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+}
+
+/* sections go transparent so the wash + halftone read continuously */
+html[data-theme="anime90s"] .sec { background: transparent; border-top: 2px solid var(--rule); }
+html[data-theme="anime90s"] .cold { background: transparent; }
+html[data-theme="anime90s"] .game {
+  background: rgba(255,248,238,0.55);
+  border-top: 2.5px solid var(--ink);
+  border-bottom: 2.5px solid var(--ink);
+}
+
+/* heavier display type; cel "double print" shadow on headlines */
+html[data-theme="anime90s"] h1,
+html[data-theme="anime90s"] h2,
+html[data-theme="anime90s"] h3,
+html[data-theme="anime90s"] .headline {
+  letter-spacing: 0;
+  line-height: 1.28;
+}
+html[data-theme="anime90s"] .headline {
+  text-shadow: 3px 3px 0 rgba(255,61,127,0.22);
+}
+html[data-theme="anime90s"] .kicker { font-style: normal; color: var(--coral); }
+html[data-theme="anime90s"] .label { color: var(--teal); }
+html[data-theme="anime90s"] .lead strong,
+html[data-theme="anime90s"] .body-text strong { color: var(--coral); }
+html[data-theme="anime90s"] ::selection { background: var(--coral); color: #fff; }
+
+/* ---------------- HERO: dramatic sunburst + neon code ---------------- */
+html[data-theme="anime90s"] .cold::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 40%,
+    rgba(255,61,127,0.12) 0deg 5deg,
+    transparent 5deg 11deg);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 62%);
+          mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 62%);
+  opacity: 0.85;
+}
+html[data-theme="anime90s"] .cold-inner { z-index: 1; }
+html[data-theme="anime90s"] .cold-headline { text-shadow: 2px 2px 0 rgba(15,181,201,0.25); }
+html[data-theme="anime90s"] .cold-code {
+  color: var(--coral);
+  text-shadow:
+    2px 2px 0 var(--ink),
+    0 0 24px rgba(255,61,127,0.45);
+}
+html[data-theme="anime90s"] .cold-bridge { font-style: normal; color: var(--teal); }
+html[data-theme="anime90s"] .scroll-hint .line { background: var(--coral); }
+
+/* cel avocado: bold outline, saturated pit, magenta flesh ring */
+html[data-theme="anime90s"] .avocado .avo-skin  { stroke: var(--ink); stroke-width: 3; fill: #FFF8EE; }
+html[data-theme="anime90s"] .avocado .avo-flesh { stroke: var(--coral); stroke-width: 2.2; }
+html[data-theme="anime90s"] .avocado .avo-pit   { stroke: var(--ink); stroke-width: 2.4; fill: var(--teal); }
+html[data-theme="anime90s"] .avocado .avo-stem  { stroke: var(--ink); }
+
+/* ---------------- BUTTONS: cel blocks with offset shadow ---------------- */
+html[data-theme="anime90s"] .btn {
+  border-width: 2.5px;
+  border-radius: 6px;
+  font-weight: 600;
+  background: var(--base-panel);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+html[data-theme="anime90s"] .btn:hover {
+  background: var(--base-panel);
+  color: var(--ink);
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+html[data-theme="anime90s"] .btn-teal  { border-color: var(--teal);  box-shadow: 4px 4px 0 var(--teal); }
+html[data-theme="anime90s"] .btn-teal:hover  { box-shadow: 1px 1px 0 var(--teal); }
+html[data-theme="anime90s"] .btn-coral { border-color: var(--coral); box-shadow: 4px 4px 0 var(--coral); }
+html[data-theme="anime90s"] .btn-coral:hover { box-shadow: 1px 1px 0 var(--coral); }
+
+/* ---------------- CARDS & PANELS: hard outlines + offset shadows ------- */
+html[data-theme="anime90s"] .heading-card,
+html[data-theme="anime90s"] .answer-card,
+html[data-theme="anime90s"] .product-hero,
+html[data-theme="anime90s"] .sony-card {
+  border: 2.5px solid var(--ink);
+  border-radius: 8px;
+  background: var(--base-panel);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+html[data-theme="anime90s"] .sony-card { border-left-width: 6px; border-left-color: var(--coral); }
+html[data-theme="anime90s"] .heading-card .hc-duty {
+  border-width: 2px; border-radius: 5px; color: var(--coral);
+}
+html[data-theme="anime90s"] .answer-card:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+html[data-theme="anime90s"] .answer-card .ac-name { color: var(--ink); }
+html[data-theme="anime90s"] .answer-card.correct .ac-name { color: var(--teal); }
+
+/* product strip: bold candy borders & saturated lenses */
+html[data-theme="anime90s"] .smartwatch .case,
+html[data-theme="anime90s"] .smartwatch .band-top,
+html[data-theme="anime90s"] .smartwatch .band-bot,
+html[data-theme="anime90s"] .vr .visor,
+html[data-theme="anime90s"] .vr .strap,
+html[data-theme="anime90s"] .vr .nose { border-width: 2.5px; }
+html[data-theme="anime90s"] .smartwatch .tick { color: var(--coral); }
+html[data-theme="anime90s"] .vr .lens { border-width: 2.5px; }
+
+/* code builder: pixel digits, candy underlines already use tokens */
+html[data-theme="anime90s"] .code-seg { letter-spacing: 0.02em; }
+
+/* timeline spine + active dots */
+html[data-theme="anime90s"] .timeline .spine { background: var(--rule-soft); }
+html[data-theme="anime90s"] .step .dot { border-width: 2px; }
+
+/* metric callout block: bold cel rules */
+html[data-theme="anime90s"] .metrics { border-top: 2.5px solid var(--ink); border-bottom: 2.5px solid var(--ink); }
+html[data-theme="anime90s"] .metrics .vs { font-style: normal; color: var(--coral); }
+
+/* ---------------- CRT WINDOWS: scanlines + neon, cel frame ------------- */
+html[data-theme="anime90s"] .console {
+  border: 2.5px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+html[data-theme="anime90s"] .console::before {     /* scanlines */
+  content: "";
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: repeating-linear-gradient(
+    rgba(0,0,0,0) 0 2px,
+    rgba(0,0,0,0.22) 2px 3px);
+  opacity: 0.55;
+}
+html[data-theme="anime90s"] .final-code {
+  color: var(--c-lime);
+  text-shadow: 0 0 18px rgba(93,242,228,0.55), 2px 2px 0 rgba(255,123,213,0.4);
+}
+
+/* footer wordmark in the pop face */
+html[data-theme="anime90s"] .footer { border-top: 2.5px solid var(--ink); }
+html[data-theme="anime90s"] .footer .wm { font-style: normal; color: var(--coral); text-shadow: 2px 2px 0 var(--ink); }
+
+/* ---------------- THE TOGGLE ITSELF (anime look) ----------------------- */
+html[data-theme="anime90s"] .theme-toggle {
+  color: var(--ink);
+  background: var(--base-panel);
+  border: 2.5px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--coral);
+}
+html[data-theme="anime90s"] .theme-toggle:hover {
+  background: var(--coral); color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+html[data-theme="anime90s"] .theme-toggle .tt-star { color: var(--coral); }
+html[data-theme="anime90s"] .theme-toggle:hover .tt-star { color: #fff; }
+
+/* keep motion-reduced users calm: no extra animation introduced here, but
+   drop the hover translate so nothing shifts unexpectedly */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="anime90s"] .btn:hover,
+  html[data-theme="anime90s"] .answer-card:hover,
+  html[data-theme="anime90s"] .theme-toggle:hover { transform: none; }
+}
