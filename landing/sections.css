@@ -17,7 +17,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 44px var(--pad);
+  /* extra bottom padding lifts the centered block so the "One number"
+     label clears the scroll hint at the bottom of the hero */
+  padding: 44px var(--pad) 132px;
 }
 .cold-inner > * { flex: none; }
 
