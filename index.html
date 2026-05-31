@@ -18,9 +18,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<!-- Fonts for the optional 90s-anime theme. The CSS is tiny; the woff2 files
+<!-- Fonts for the optional Mecha-HUD theme. The CSS is tiny; the woff2 files
      only download when that theme actually renders glyphs with them. -->
-<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700;900&family=DotGothic16&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Chakra+Petch:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="landing/landing.css" />
 <link rel="stylesheet" href="landing/sections.css" />
 <link rel="stylesheet" href="landing/theme-anime90s.css" />
@@ -40,9 +40,9 @@
 </head>
 <body>
 
-<!-- Theme switch — flips between the editorial default and the 90s-anime look -->
+<!-- Theme switch — flips between the editorial default and the mecha-HUD look -->
 <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch visual theme">
-  <span class="tt-star">✶</span><span class="tt-label">90s Anime</span>
+  <span class="tt-star">◎</span><span class="tt-label">Mecha HUD</span>
 </button>
 
 <!-- ============ SECTION 0 — COLD OPEN ============ -->
@@ -410,7 +410,7 @@
     var on = root.getAttribute("data-theme") === "anime90s";
     btn.setAttribute("aria-pressed", on ? "true" : "false");
     var lbl = btn.querySelector(".tt-label");
-    if (lbl) lbl.textContent = on ? "Editorial" : "90s Anime";
+    if (lbl) lbl.textContent = on ? "Editorial" : "Mecha HUD";
   }
   btn.addEventListener("click", function () {
     var on = root.getAttribute("data-theme") === "anime90s";
