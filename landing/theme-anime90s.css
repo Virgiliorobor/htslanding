@@ -1,47 +1,46 @@
 /* ============================================================
-   AduanIA — "MECHA HUD" theme  (Robotech / Macross cockpit)
+   AduanIA — "MECHA HUD" theme  (light blueprint variant)
    ------------------------------------------------------------
    Activated by <html data-theme="anime90s">. PURELY ADDITIVE:
    it only re-declares design tokens and adds decoration scoped
    under the attribute. Remove the attribute (or this file) and
    the editorial design returns 100% unchanged.
 
-   Signature: dark cockpit canopy, blueprint tactical grid,
-   cyan + phosphor + amber readouts, corner-bracket HUD frames,
-   targeting reticle behind the hero, glow instead of ink, CRT
-   scanlines in the instrument windows. Geometric "control panel"
-   display type, terminal mono readouts.
+   Signature: light blue-grey canopy, steel blueprint grid, dark
+   slate ink, deep cyan + amber readouts, corner-bracket HUD
+   frames, targeting reticle behind the hero. The instrument
+   windows stay dark (lit CRT screens) with their phosphor glow.
 
    (The data-theme value stays "anime90s" so existing toggle,
     ?theme=anime links, and saved choices keep working.)
    ============================================================ */
 
 html[data-theme="anime90s"] {
-  /* --- palette: lit instruments on a dark canopy ------------- */
-  --base:        #0A0F11;   /* cockpit dark */
-  --base-panel:  #10191C;   /* lifted panel */
-  --base-strip:  #0D1518;   /* recessed strip */
-  --ink:         #D7E7E3;   /* phosphor-cool foreground text */
-  --ink-light:   #8AA3A1;   /* secondary readout */
-  --ink-faint:   #5E7775;   /* tertiary / ticks */
-  --rule:        #28403F;   /* panel hairline */
-  --rule-soft:   #1C2E2E;
+  /* --- palette: lit blueprint on a light blue-grey canopy ---- */
+  --base:        #D8E2EB;   /* light blue-grey */
+  --base-panel:  #EFF4F8;   /* near-white instrument panel */
+  --base-strip:  #CCD8E1;   /* recessed strip */
+  --ink:         #1E2A33;   /* dark slate text */
+  --ink-light:   #4E5E6A;   /* secondary readout */
+  --ink-faint:   #82929E;   /* tertiary / ticks */
+  --rule:        #A1B2BE;   /* steel hairline */
+  --rule-soft:   #C5D0D9;
 
-  --teal:  #36D6E0;         /* HUD cyan ("confirmed / locked") */
-  --teal-soft: rgba(54,214,224,0.10);
-  --coral: #FFB23B;         /* warning amber ("attention / US") */
-  --coral-soft: rgba(255,178,59,0.10);
-  --green: #6BFF9C;         /* phosphor green */
+  --teal:  #0E8C99;         /* deep HUD cyan ("confirmed / locked") */
+  --teal-soft: rgba(14,140,153,0.10);
+  --coral: #C2741C;         /* amber ("attention / US") */
+  --coral-soft: rgba(194,116,28,0.10);
+  --green: #2E8B57;         /* readout green */
 
-  /* CRT instrument window — near-black green + neon signal */
-  --c-bg:    #050D0B;
-  --c-panel: #0B1714;
+  /* CRT instrument window — stays a dark lit screen with phosphor */
+  --c-bg:    #071512;
+  --c-panel: #0C1B17;
   --c-fg:    #C9F5E2;
   --c-soft:  #9DD8C6;
   --c-muted: #6FA793;
   --c-faint: #4E7A6C;
   --c-lime:  #6BFF9C;       /* phosphor green = the live signal */
-  --c-cyan:  #36D6E0;       /* HUD cyan */
+  --c-cyan:  #4FE3ED;       /* HUD cyan (on dark screen) */
   --c-rust:  #FF6B5E;
   --c-clay:  #FFB23B;
   --c-line:  rgba(107,255,156,0.16);
@@ -52,15 +51,15 @@ html[data-theme="anime90s"] {
   --body:  "Chakra Petch", system-ui, sans-serif;               /* prose */
 }
 
-/* dark canopy + blueprint tactical grid + cyan/amber rim glows,
+/* light canopy + steel blueprint grid + soft cyan/amber rim glows,
    painted on the page background so it sits behind every section */
 html[data-theme="anime90s"] body {
-  background-color: #0A0F11;
+  background-color: #D8E2EB;
   background-image:
-    linear-gradient(rgba(54,214,224,0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(54,214,224,0.045) 1px, transparent 1px),
-    radial-gradient(circle at 50% -8%, rgba(255,178,59,0.10), transparent 55%),
-    radial-gradient(circle at 50% 118%, rgba(54,214,224,0.10), transparent 55%);
+    linear-gradient(rgba(30,42,51,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,42,51,0.06) 1px, transparent 1px),
+    radial-gradient(circle at 50% -8%, rgba(14,140,153,0.12), transparent 55%),
+    radial-gradient(circle at 50% 118%, rgba(194,116,28,0.10), transparent 55%);
   background-size: 46px 46px, 46px 46px, 100% 100%, 100% 100%;
   background-attachment: fixed;
 }
@@ -69,74 +68,67 @@ html[data-theme="anime90s"] body {
 html[data-theme="anime90s"] .sec { background: transparent; border-top: 1px solid var(--rule); }
 html[data-theme="anime90s"] .cold { background: transparent; }
 html[data-theme="anime90s"] .game {
-  background: rgba(16,25,28,0.5);
-  border-top: 1.5px solid rgba(54,214,224,0.35);
-  border-bottom: 1.5px solid rgba(54,214,224,0.35);
+  background: rgba(239,244,248,0.6);
+  border-top: 1.5px solid rgba(14,140,153,0.45);
+  border-bottom: 1.5px solid rgba(14,140,153,0.45);
 }
 
-/* headers: geometric, spaced, faint cyan glow */
+/* headers: geometric, spaced, clean (no glow on light surfaces) */
 html[data-theme="anime90s"] h1,
 html[data-theme="anime90s"] h2,
 html[data-theme="anime90s"] h3,
 html[data-theme="anime90s"] .headline { letter-spacing: 0.01em; line-height: 1.28; }
-html[data-theme="anime90s"] .headline { text-shadow: 0 0 18px rgba(54,214,224,0.25); }
 html[data-theme="anime90s"] .kicker { font-style: normal; color: var(--coral); }
 html[data-theme="anime90s"] .label { color: var(--teal); }
 html[data-theme="anime90s"] .lead strong,
 html[data-theme="anime90s"] .body-text strong { color: var(--coral); }
-html[data-theme="anime90s"] ::selection { background: var(--teal); color: #04161a; }
+html[data-theme="anime90s"] ::selection { background: var(--teal); color: #fff; }
 
-/* ---------------- HERO: targeting reticle + neon code ---------------- */
+/* ---------------- HERO: targeting reticle + crisp code ---------------- */
 html[data-theme="anime90s"] .orbit { overflow: visible; }
 html[data-theme="anime90s"] .orbit::before {     /* outer targeting ring */
   content: ""; position: absolute; inset: -7%;
-  border: 1.5px solid rgba(54,214,224,0.40);
+  border: 1.5px solid rgba(14,140,153,0.50);
   border-radius: 50%; z-index: 0; pointer-events: none;
-  box-shadow: inset 0 0 0 1px rgba(54,214,224,0.10), 0 0 26px rgba(54,214,224,0.14);
+  box-shadow: inset 0 0 0 1px rgba(14,140,153,0.12);
 }
 html[data-theme="anime90s"] .orbit::after {      /* crosshair, with a gap around the fruit */
   content: ""; position: absolute; inset: -7%; z-index: 0; pointer-events: none;
   background:
-    linear-gradient(rgba(54,214,224,0.32), rgba(54,214,224,0.32)) 50% 0 / 1.5px 100% no-repeat,
-    linear-gradient(90deg, rgba(54,214,224,0.32), rgba(54,214,224,0.32)) 0 50% / 100% 1.5px no-repeat;
+    linear-gradient(rgba(14,140,153,0.42), rgba(14,140,153,0.42)) 50% 0 / 1.5px 100% no-repeat,
+    linear-gradient(90deg, rgba(14,140,153,0.42), rgba(14,140,153,0.42)) 0 50% / 100% 1.5px no-repeat;
   -webkit-mask: radial-gradient(circle, #000 0 30%, transparent 31% 52%, #000 53%);
           mask: radial-gradient(circle, #000 0 30%, transparent 31% 52%, #000 53%);
 }
-html[data-theme="anime90s"] .avocado { position: relative; z-index: 1; filter: drop-shadow(0 0 6px rgba(54,214,224,0.35)); }
-html[data-theme="anime90s"] .avocado .avo-skin  { stroke: var(--teal); stroke-width: 2; fill: rgba(54,214,224,0.05); }
-html[data-theme="anime90s"] .avocado .avo-flesh { stroke: rgba(54,214,224,0.40); stroke-width: 1.4; }
-html[data-theme="anime90s"] .avocado .avo-pit   { stroke: var(--coral); stroke-width: 2; fill: rgba(255,178,59,0.18); }
+html[data-theme="anime90s"] .avocado { position: relative; z-index: 1; }
+html[data-theme="anime90s"] .avocado .avo-skin  { stroke: var(--teal); stroke-width: 2; fill: rgba(14,140,153,0.06); }
+html[data-theme="anime90s"] .avocado .avo-flesh { stroke: rgba(14,140,153,0.45); stroke-width: 1.4; }
+html[data-theme="anime90s"] .avocado .avo-pit   { stroke: var(--coral); stroke-width: 2; fill: rgba(194,116,28,0.20); }
 html[data-theme="anime90s"] .avocado .avo-stem  { stroke: var(--teal); }
 
-html[data-theme="anime90s"] .cold-headline { text-shadow: 0 0 14px rgba(54,214,224,0.20); }
 html[data-theme="anime90s"] .cold-bridge { font-style: normal; color: var(--coral); }
-html[data-theme="anime90s"] .cold-code {
-  color: var(--teal);
-  text-shadow: 0 0 22px rgba(54,214,224,0.55), 0 0 2px rgba(54,214,224,0.9);
-}
-html[data-theme="anime90s"] .scroll-hint .line { background: var(--teal); box-shadow: 0 0 6px rgba(54,214,224,0.5); }
+html[data-theme="anime90s"] .cold-code { color: var(--teal); }
+html[data-theme="anime90s"] .scroll-hint .line { background: var(--teal); }
 
-/* ---------------- BUTTONS: glowing HUD switches ---------------- */
+/* ---------------- BUTTONS: HUD switches (subtle on light) ---------------- */
 html[data-theme="anime90s"] .btn {
   border-width: 1.5px;
   letter-spacing: 0.2em;
   color: var(--teal); border-color: var(--teal);
-  background: rgba(54,214,224,0.06);
-  box-shadow: 0 0 12px rgba(54,214,224,0.14), inset 0 0 14px rgba(54,214,224,0.05);
+  background: rgba(14,140,153,0.07);
 }
-html[data-theme="anime90s"] .btn:hover { background: var(--teal); color: #04161a; box-shadow: 0 0 20px rgba(54,214,224,0.5); }
+html[data-theme="anime90s"] .btn:hover { background: var(--teal); color: #fff; box-shadow: 0 0 14px rgba(14,140,153,0.3); }
 html[data-theme="anime90s"] .btn-teal  { color: var(--teal);  border-color: var(--teal); }
-html[data-theme="anime90s"] .btn-coral { color: var(--coral); border-color: var(--coral); background: rgba(255,178,59,0.06); box-shadow: 0 0 12px rgba(255,178,59,0.16); }
-html[data-theme="anime90s"] .btn-coral:hover { background: var(--coral); color: #1a1205; box-shadow: 0 0 20px rgba(255,178,59,0.5); }
+html[data-theme="anime90s"] .btn-coral { color: var(--coral); border-color: var(--coral); background: rgba(194,116,28,0.07); }
+html[data-theme="anime90s"] .btn-coral:hover { background: var(--coral); color: #fff; box-shadow: 0 0 14px rgba(194,116,28,0.3); }
 
 /* ---------------- PANELS: HUD frames with corner brackets ---------------- */
 html[data-theme="anime90s"] .heading-card,
 html[data-theme="anime90s"] .product-hero,
 html[data-theme="anime90s"] .sony-card {
   position: relative;
-  border: 1.5px solid rgba(54,214,224,0.40);
+  border: 1.5px solid rgba(14,140,153,0.45);
   background: var(--base-panel);
-  box-shadow: inset 0 0 26px rgba(54,214,224,0.05);
 }
 /* two corner brackets (top-left + bottom-right) — the cockpit panel motif */
 html[data-theme="anime90s"] .heading-card::before,
@@ -144,56 +136,51 @@ html[data-theme="anime90s"] .product-hero::before,
 html[data-theme="anime90s"] .sony-card::before {
   content: ""; position: absolute; top: 6px; left: 6px; width: 12px; height: 12px;
   border-top: 1.5px solid var(--teal); border-left: 1.5px solid var(--teal);
-  opacity: 0.75; pointer-events: none;
+  opacity: 0.85; pointer-events: none;
 }
 html[data-theme="anime90s"] .heading-card::after,
 html[data-theme="anime90s"] .product-hero::after,
 html[data-theme="anime90s"] .sony-card::after {
   content: ""; position: absolute; bottom: 6px; right: 6px; width: 12px; height: 12px;
   border-bottom: 1.5px solid var(--teal); border-right: 1.5px solid var(--teal);
-  opacity: 0.75; pointer-events: none;
+  opacity: 0.85; pointer-events: none;
 }
 html[data-theme="anime90s"] .sony-card { border-left: 3px solid var(--coral); }
-html[data-theme="anime90s"] .heading-card .hc-duty { border-width: 1.5px; color: var(--coral); box-shadow: 0 0 10px rgba(255,178,59,0.18); }
+html[data-theme="anime90s"] .heading-card .hc-duty { border-width: 1.5px; color: var(--coral); }
 
-/* answer cards: recolour the existing corner ticks to HUD cyan + lock glow */
-html[data-theme="anime90s"] .answer-card { border-color: rgba(54,214,224,0.40); background: var(--base-panel); }
-html[data-theme="anime90s"] .answer-card:hover { border-color: var(--teal); box-shadow: 0 0 16px rgba(54,214,224,0.22); }
+/* answer cards: recolour the existing corner ticks to HUD cyan + lock highlight */
+html[data-theme="anime90s"] .answer-card { border-color: rgba(14,140,153,0.45); background: var(--base-panel); }
+html[data-theme="anime90s"] .answer-card:hover { border-color: var(--teal); box-shadow: 0 0 14px rgba(14,140,153,0.18); }
 html[data-theme="anime90s"] .answer-card .tick-tl,
-html[data-theme="anime90s"] .answer-card .tick-br { border-color: var(--teal); opacity: 0.8; width: 11px; height: 11px; }
+html[data-theme="anime90s"] .answer-card .tick-br { border-color: var(--teal); opacity: 0.85; width: 11px; height: 11px; }
 html[data-theme="anime90s"] .answer-card .ac-name { color: var(--ink); }
 html[data-theme="anime90s"] .answer-card.correct .ac-name { color: var(--teal); }
 
-/* product diagrams pick up cyan rims + glow */
+/* product diagrams pick up cyan rims */
 html[data-theme="anime90s"] .smartwatch .case,
 html[data-theme="anime90s"] .smartwatch .band-top,
 html[data-theme="anime90s"] .smartwatch .band-bot,
 html[data-theme="anime90s"] .vr .visor,
 html[data-theme="anime90s"] .vr .strap,
 html[data-theme="anime90s"] .vr .nose { border-color: var(--teal); }
-html[data-theme="anime90s"] .smartwatch { filter: drop-shadow(0 0 5px rgba(54,214,224,0.25)); }
-html[data-theme="anime90s"] .vr { filter: drop-shadow(0 0 5px rgba(54,214,224,0.22)); }
 html[data-theme="anime90s"] .smartwatch .tick { color: var(--coral); }
-html[data-theme="anime90s"] .vr .lens { border-color: var(--teal); box-shadow: 0 0 10px rgba(54,214,224,0.25); }
+html[data-theme="anime90s"] .vr .lens { border-color: var(--teal); }
 
-/* code builder digits: terminal readout */
-html[data-theme="anime90s"] .code-seg { letter-spacing: 0.03em; text-shadow: 0 0 12px rgba(54,214,224,0.18); }
+/* code builder digits */
+html[data-theme="anime90s"] .code-seg { letter-spacing: 0.03em; }
 
 /* timeline: HUD spine + locked nodes */
 html[data-theme="anime90s"] .timeline .spine { background: var(--rule); }
-html[data-theme="anime90s"] .timeline .spine-fill { box-shadow: 0 0 8px rgba(54,214,224,0.5); }
 html[data-theme="anime90s"] .step .dot { border-color: var(--rule); background: var(--base-panel); }
-html[data-theme="anime90s"] .step.active .dot { box-shadow: 0 0 12px rgba(54,214,224,0.5); color: #04161a; }
 
 /* metrics block: bracketed HUD rails */
-html[data-theme="anime90s"] .metrics { border-top: 1.5px solid rgba(54,214,224,0.35); border-bottom: 1.5px solid rgba(54,214,224,0.35); }
+html[data-theme="anime90s"] .metrics { border-top: 1.5px solid rgba(14,140,153,0.45); border-bottom: 1.5px solid rgba(14,140,153,0.45); }
 html[data-theme="anime90s"] .metrics .vs { font-style: normal; color: var(--coral); }
-html[data-theme="anime90s"] .metric .m-num.teal { text-shadow: 0 0 16px rgba(54,214,224,0.4); }
 
-/* ---------------- CRT WINDOWS: scanlines + cyan frame glow ------------- */
+/* ---------------- CRT WINDOWS: dark lit screens + scanlines ------------- */
 html[data-theme="anime90s"] .console {
-  border: 1.5px solid rgba(54,214,224,0.45);
-  box-shadow: 0 0 22px rgba(54,214,224,0.12), inset 0 0 30px rgba(0,0,0,0.5);
+  border: 1.5px solid rgba(14,140,153,0.55);
+  box-shadow: 0 6px 20px rgba(30,42,51,0.18), inset 0 0 30px rgba(0,0,0,0.5);
 }
 html[data-theme="anime90s"] .console::before {     /* scanlines */
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -206,16 +193,15 @@ html[data-theme="anime90s"] .final-code {
 }
 
 /* footer wordmark in the display face */
-html[data-theme="anime90s"] .footer { border-top: 1.5px solid rgba(54,214,224,0.3); }
-html[data-theme="anime90s"] .footer .wm { font-style: normal; color: var(--teal); text-shadow: 0 0 18px rgba(54,214,224,0.4); }
+html[data-theme="anime90s"] .footer { border-top: 1.5px solid rgba(14,140,153,0.4); }
+html[data-theme="anime90s"] .footer .wm { font-style: normal; color: var(--teal); }
 
 /* ---------------- THE TOGGLE ITSELF (HUD look) ----------------------- */
 html[data-theme="anime90s"] .theme-toggle {
   color: var(--teal);
-  background: rgba(54,214,224,0.06);
+  background: rgba(14,140,153,0.08);
   border: 1.5px solid var(--teal);
-  box-shadow: 0 0 14px rgba(54,214,224,0.2), inset 0 0 12px rgba(54,214,224,0.05);
 }
-html[data-theme="anime90s"] .theme-toggle:hover { background: var(--teal); color: #04161a; box-shadow: 0 0 20px rgba(54,214,224,0.55); }
+html[data-theme="anime90s"] .theme-toggle:hover { background: var(--teal); color: #fff; box-shadow: 0 0 14px rgba(14,140,153,0.35); }
 html[data-theme="anime90s"] .theme-toggle .tt-star { color: var(--coral); }
-html[data-theme="anime90s"] .theme-toggle:hover .tt-star { color: #04161a; }
+html[data-theme="anime90s"] .theme-toggle:hover .tt-star { color: #fff; }
