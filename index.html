@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="anime90s">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AduanIA — Every product. One number.</title>
 <meta name="description" content="How the world classifies everything it trades — and how AduanIA automates U.S. HTS customs classification with an 8-agent legal reasoning chain." />
-<meta name="theme-color" content="#F8F6F1" />
+<meta name="theme-color" content="#D8E2EB" />
 <!-- Social / share preview -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="AduanIA — Every product. One number." />
@@ -24,25 +24,29 @@
 <link rel="stylesheet" href="landing/landing.css" />
 <link rel="stylesheet" href="landing/sections.css" />
 <link rel="stylesheet" href="landing/theme-anime90s.css" />
-<!-- Set the theme before first paint (URL ?theme=anime or saved choice) to avoid a flash. -->
+<!-- Resolve the theme before first paint. Mecha HUD is the default (set
+     statically on <html>); editorial is the opt-out via toggle / ?theme=editorial. -->
 <script>
 (function () {
   try {
     var q = new URLSearchParams(location.search).get("theme");
     var saved = localStorage.getItem("aduania-theme");
     var t = q || saved;
-    if (t === "anime" || t === "anime90s") {
+    if (t === "editorial" || t === "default") {
+      document.documentElement.removeAttribute("data-theme");
+    } else if (t === "anime" || t === "anime90s" || t === "hud") {
       document.documentElement.setAttribute("data-theme", "anime90s");
     }
+    // otherwise leave the default mecha HUD already set on <html>
   } catch (e) {}
 })();
 </script>
 </head>
 <body>
 
-<!-- Theme switch — flips between the editorial default and the mecha-HUD look -->
-<button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch visual theme">
-  <span class="tt-star">◎</span><span class="tt-label">Mecha HUD</span>
+<!-- Theme switch — Mecha HUD is the default; this flips to the editorial look -->
+<button id="themeToggle" class="theme-toggle" type="button" aria-pressed="true" aria-label="Switch visual theme">
+  <span class="tt-star">◎</span><span class="tt-label">Editorial</span>
 </button>
 
 <!-- ============ SECTION 0 — COLD OPEN ============ -->
